@@ -2,7 +2,7 @@ name: Generate ASCII artwork with cowsay
 on: push
 
 jobs:
-    ascii_artwork:
+    ascii_artwork_job:
         runs-on: ubuntu-latest
         steps:
         - name: Clone repo
@@ -12,13 +12,13 @@ jobs:
           run:  sudo apt-get install cowsay -y
 
         - name: Execute Cowsay CMD
-          run:  cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
+          run:  cowsay -f lion "Run for cover, I am a LION OF TERANGA champions of AFRICA...GRURR" >> lion.txt
 
         - name: Test File Exists
-          run:  grep -i "dragon" dragon.txt
+          run:  grep -i "lion" lion.txt
         
         - name: Read File
-          run:  cat dragon.txt
+          run:  cat lion.txt
 
         - name: List Repo Files
           run:  ls -lrtha
