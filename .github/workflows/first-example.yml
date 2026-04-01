@@ -13,7 +13,7 @@ jobs:
               uses: actions/checkout@v6
 
             - name: List Files ${{ github.repository }}
-              run: cd ${{ github.repository }}
+              run: ls -lrth
 
             - name: Read file
               run: cat README.md
