@@ -9,6 +9,9 @@ jobs:
               run: |
                 echo " Hello world from Github Actions"
 
+            - name: Clone repository ${{ github.repository }}
+              uses: actions/checkout@v6
+
             - name: List Files ${{ github.repository }}
               run: ls ${{ github.repository }}
 
