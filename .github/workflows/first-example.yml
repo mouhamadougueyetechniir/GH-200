@@ -5,15 +5,11 @@ jobs:
     first_job:
         runs-on: ubuntu-latest
         steps:
-            - name: Welcome message
-              run: |
-                echo " Hello world from Github Actions"
-
             - name: Clone repository ${{ github.repository }}
               uses: actions/checkout@v6
 
-            - name: List Files ${{ github.repository }}
-              run: ls -lrth
-
-            - name: Read file
-              run: cat README.md
+            - name: Welcome message
+              run: |
+                echo " Hello world from Github Actions"
+                ls -lrth
+                cat README.md
