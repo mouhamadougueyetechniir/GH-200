@@ -8,9 +8,9 @@ jobs:
         - name: Clone repo
           uses: actions/checkout@v4
 
-        - name: Install Cowsay Program
-          run:  .chmod +x ascii-script.sh
+        - name: Execute bash script
+          run:   |
+            chmod +x ascii-script.sh
+            ./ascii-script.sh
 
-        - name: Install Cowsay Program
-          run:  ./ascii-script.sh
 
