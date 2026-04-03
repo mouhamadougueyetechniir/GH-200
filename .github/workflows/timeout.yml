@@ -1,10 +1,10 @@
 name: Workflows with timeout in steps level
 
 on: 
-  #push
+  push
   #schedule:
   #  - cron: "*/1 * * * *"
-  workflow_dispatch: 
+  #workflow_dispatch: 
 
 env:
   CONTAINER_REGISTRY: docker.io
@@ -35,4 +35,7 @@ jobs:
       steps:
         - name: Docker run
           timeout-minutes: 1
-          run: docker run -d -p 8080:80  ${{env.CONTAINER_REGISTRY}}/${{vars.DOCKER_USERNAME}}/${{env.DOCKER_IMAGE}}:latest
+          run: |
+            docker run -d -p 8080:80  ${{env.CONTAINER_REGISTRY}}/${{vars.DOCKER_USERNAME}}/${{env.DOCKER_IMAGE}}:latest
+            sleep 6000s
+
