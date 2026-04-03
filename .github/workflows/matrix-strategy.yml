@@ -6,6 +6,8 @@ on:
 jobs:
     deploy:
         strategy:
+          fail-fast: false # cancel any jobs that are running on in queuse when a jobs failed
+          max-parallel: 2
           matrix:
             os: [ubuntu-latest, ubuntu-20.04, windows-latest]
             images: [hello-world, alpine]
