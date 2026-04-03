@@ -1,0 +1,37 @@
+name: Concurency in jobs and projects
+
+on: 
+  #push
+  #schedule:
+  #  - cron: "*/1 * * * *"
+  workflow_dispatch: 
+
+env:
+  CONTAINER_REGISTRY: docker.io
+  DOCKER_IMAGE: simple-nginx-app
+
+jobs:
+    docker:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Docker Pull 
+            run: docker image pull  nginx:latest
+
+          - name: Docker build
+            run: docker tag nginx:latest docker.io/${{vars.DOCKER_USERNAME}}/$DOCKER_IMAGE:latest
+
+          - name: Docker login
+            run: docker login --username=${{vars.DOCKER_USERNAME}} --password=${{secrets.DOCKER_PASSWORD}}
+
+          - name: Docker Publish
+            run: docker push ${{env.CONTAINER_REGISTRY}}/${{vars.DOCKER_USERNAME}}/${{env.DOCKER_IMAGE}}:latest
+
+    deploy:
+      needs: docker
+      runs-on: ubuntu-latest
+      concurrency:
+        cancel-in-progress: true
+        group: production_deployment
+      steps:
+        - name: Docker run
+          run: docker run -d -p 8080:80  ${{env.CONTAINER_REGISTRY}}/${{vars.DOCKER_USERNAME}}/${{env.DOCKER_IMAGE}}:latest
