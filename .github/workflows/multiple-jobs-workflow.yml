@@ -1,5 +1,7 @@
 name: Multiple Job Worklow
-on: push
+on: 
+  #push
+  workflow_dispatch: 
 
 jobs:
     build:
