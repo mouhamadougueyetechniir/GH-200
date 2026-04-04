@@ -18,7 +18,7 @@ on:
     paths-ignore: # workflow will only run when a pull request hat includes a change on any others files than README!md
         - README.md
     branches: 
-        - main  # configure your wokflow to only run on pull requests that target specific branches
+        - main   # configure your wokflow to only run on pull requests that target specific branches
 jobs:
   filter:
     runs-on: ubuntu-latest
