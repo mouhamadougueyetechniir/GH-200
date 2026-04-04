@@ -1,0 +1,27 @@
+name: Workflow filters and Activities
+
+on: 
+  workflow_dispatch: 
+  push:
+    branches:
+      - main
+      - "!features/*" # ignoring push on any branches starting with "features"
+
+    # can use either branches or branches-ignore
+     # branches-ignore: 
+     #     - features/* # ignore feature/add-music, feature/updatesImages
+     #     - test/**    # test/ui/index, test/checkout/payment/
+  pull_request:
+    types:
+      - closed
+      - opened
+    paths-ignore: # workflow will only run when a pull request hat includes a change on any others files than README!md
+        - README.md
+    branches: 
+        - main  # configure your wokflow to only run on pull requests that target specific branches
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Workflow filters and Activities
+        run: echo this workflow/job/step is executed for event type - ${{ github.event_name }}
